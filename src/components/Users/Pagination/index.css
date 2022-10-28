@@ -1,0 +1,11 @@
+.active {
+    color: green;
+    font-weight: bold;
+}
+
+.pagination-link {
+    height: 10px;
+    width: 15px;
+    background-color: #141414;
+    color: #f1f1f1;
+}
