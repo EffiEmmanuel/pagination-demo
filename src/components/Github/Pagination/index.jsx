@@ -59,7 +59,7 @@ function Pagination(props) {
                 <h5 className="card-title">ID: {item.id}</h5>
                 <p className="card-title">Repository: {item.name}</p>
 
-                {/* 404 PAGE */}
+                {/* Links to a 404 PAGE */}
                 <Link className="btn btn-dark btn-primary" to={`repositories/${item.name}`}>View Repo</Link>
               </div>
 

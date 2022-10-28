@@ -56,6 +56,11 @@ function Pagination(props) {
         {currentItems?.map((item, index) => {
           return (
             <div class="card">
+              <img
+                src={item.image}
+                alt={item.login.username}
+                className="card-img-top"
+              />
               <div class="card-body">
                 <h5 className="card-title">Username: {item.login.username}</h5>
                 <h6 className="card-subtitle">Email: {item.email}</h6>
