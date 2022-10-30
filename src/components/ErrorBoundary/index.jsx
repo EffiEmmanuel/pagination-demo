@@ -21,7 +21,7 @@ class ErrorBoundary extends Component {
 
   render() {
     if (this.state.hasError) {
-      return <p>An error occured while fetching the data</p>;
+      return <p>An error occured while fetching the data. Please check your internet connection and try again.</p>;
     }
     return this.props.children;
   }
