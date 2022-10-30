@@ -9,3 +9,10 @@
     background-color: #141414;
     color: #f1f1f1;
 }
+
+.user-image {
+    margin: 10px auto;
+    border-radius: 50%;
+    min-width: 10%;
+    max-width: 10%;
+}

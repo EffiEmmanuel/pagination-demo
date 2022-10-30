@@ -57,9 +57,9 @@ function Pagination(props) {
           return (
             <div class="card">
               <img
-                src={item.image}
+                src={item.picture.thumbnail}
                 alt={item.login.username}
-                className="card-img-top"
+                className="card-img-top user-image"
               />
               <div class="card-body">
                 <h5 className="card-title">Username: {item.login.username}</h5>
