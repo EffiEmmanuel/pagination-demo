@@ -4,6 +4,7 @@ import { useState } from "react";
 import ReactPaginate from "react-paginate";
 import { Link, Outlet, Route, Routes } from "react-router-dom";
 import useSWR from "swr";
+import ErrorBoundary from "../../ErrorBoundary";
 import Spinner from "../../Spinner";
 
 function Pagination(props) {
@@ -37,9 +38,9 @@ function Pagination(props) {
 
   const { fetchedData = data, error } = useSWR(props.endpoint);
 
-  if (error) {
-    return <span>An error occured while processing your request</span>;
-  }
+  // if (error) {
+  //   return <span>An error occured while processing your request</span>;
+  // }
 
   if (!fetchedData) {
     return (
@@ -51,42 +52,49 @@ function Pagination(props) {
 
   return (
     <>
-      <div className="me">
-        {currentItems?.map((item, index) => {
-          return (
-            <div class="card">
-              <div class="card-body">
-                <h5 className="card-title">ID: {item.id}</h5>
-                <p className="card-title">Repository: {item.name}</p>
+      <ErrorBoundary>
+        <div className="me">
+          {currentItems?.map((item, index) => {
+            return (
+              <div class="card">
+                <div class="card-body">
+                  <h5 className="card-title">ID: {item.id}</h5>
+                  <p className="card-title">Repository: {item.name}</p>
 
-                {/* Links to a 404 PAGE */}
-                <Link className="btn btn-dark btn-primary" to={`repositories/${item.name}`}>View Repo</Link>
+                  {/* Links to a 404 PAGE */}
+                  <Link
+                    className="btn btn-dark btn-primary"
+                    to={`repositories/${item.name}`}
+                  >
+                    View Repo
+                  </Link>
+                </div>
+
+                <Outlet />
               </div>
-
-              <Outlet />
-            </div>
-          );
-        })}
-      </div>
-      <ReactPaginate
-        breakLabel="..."
-        nextLabel="next >"
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
-        pageCount={pageCount}
-        previousLabel="< previous"
-        renderOnZeroPageCount={null}
-        containerClassName={"pagination justify-content-center"}
-        pageClassName={"page-item"}
-        pageLinkClassName={"page-link"}
-        previousClassName={"page-item"}
-        previousLinkClassName={"page-link"}
-        nextClassName={"page=item"}
-        nextLinkClassName={"page-link"}
-        breakClassName={"page-item"}
-        breakLinkClassName={"page-link"}
-        activeClassName={"active"}
-      />
+            );
+          })}
+        </div>
+        <ReactPaginate
+          breakLabel="..."
+          nextLabel="next >"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={5}
+          pageCount={pageCount}
+          previousLabel="< previous"
+          renderOnZeroPageCount={null}
+          containerClassName={"pagination justify-content-center"}
+          pageClassName={"page-item"}
+          pageLinkClassName={"page-link"}
+          previousClassName={"page-item"}
+          previousLinkClassName={"page-link"}
+          nextClassName={"page=item"}
+          nextLinkClassName={"page-link"}
+          breakClassName={"page-item"}
+          breakLinkClassName={"page-link"}
+          activeClassName={"active"}
+        />
+      </ErrorBoundary>
     </>
   );
 }
